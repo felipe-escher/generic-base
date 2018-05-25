@@ -1,0 +1,88 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+        <h1>
+            DAM
+            <small>editar</small>
+        </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-solid">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">DAM</h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-sm" ng-click="$ctrl.cancelUpdate()"><i class="fa fa-angle-left"></i> Voltar</button>
+                            <button class="btn btn-sm btn-success" ng-click="$ctrl.updateDam()" ng-disabled="$ctrl.carregando">
+                                <span ng-hide="$ctrl.carregando"><i class="fa fa-check"></i> Salvar</span>
+                                <span ng-show="$ctrl.carregando"><i class="fa fa-spinner fa-spin"></i> Salvando...</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <form role="form" name="formUpdate" novalidate ng-submit="$ctrl.updateDam()">
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group" show-errors>
+                                            <label for="CodCliente">Cód. Cliente</label>
+                                            <input type="text" class="form-control" id="CodCliente" name="CodCliente" ng-model="$ctrl.damUpdate.codigoCliente" required>
+                                            <span id="CodCliente-error" class="help-block help-block-error" ng-if="formUpdate.CodCliente.$error.required && !formUpdate.CodCliente.$untouched">
+                                                    O campo é obrigatório.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="form-group" show-errors>
+                                            <label for="Paciente">Paciente</label>
+                                            <input type="text" class="form-control" id="Paciente" name="Paciente" ng-model="$ctrl.damUpdate.paciente" required>
+                                            <span id="Paciente-error" class="help-block help-block-error" ng-if="formUpdate.Paciente.$error.required && !formUpdate.Paciente.$untouched">
+                                                O campo é obrigatório.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="CRM">Número CRM</label>
+                                            <input type="text" class="form-control" id="CRM" name="CRM" ng-model="$ctrl.damUpdate.numeroCrm" required>
+                                            <span id="CRM-error" class="help-block help-block-error" ng-if="formUpdate.CRM.$error.required && !formUpdate.CRM.$untouched">
+                                                    O campo é obrigatório.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="form-group" show-errors>
+                                            <label for="Medico">Médico</label>
+                                            <input type="text" class="form-control" id="Medico" name="Medico" ng-model="$ctrl.damUpdate.medico" required>
+                                            <span id="Medico-error" class="help-block help-block-error" ng-if="formUpdate.Medico.$error.required && !formUpdate.Medico.$untouched">
+                                                    O campo é obrigatório.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group" show-errors>
+                                            <label for="Solicitacao">Solicitação</label>
+                                            <textarea type="text" class="form-control" id="Solicitacao" name="Solicitacao" ng-model="$ctrl.damUpdate.solicitacao" required rows="3"></textarea>
+                                            <span id="Solicitacao-error" class="help-block help-block-error" ng-if="formUpdate.Solicitacao.$error.required && !formUpdate.Solicitacao.$untouched">
+                                                    O campo é obrigatório.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.box-body -->
+                    <!-- Loading -->
+                    <div class="overlay" ng-show="$ctrl.carregando">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+                    <!-- end loading -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col-md-12 -->
+        </div>
+        <!-- /.row -->
+    </section>

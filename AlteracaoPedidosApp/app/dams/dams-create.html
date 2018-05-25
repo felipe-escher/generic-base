@@ -1,0 +1,96 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        DAM
+        <small>incluir novo</small>
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Novo DAM</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-sm" ng-click="$ctrl.cancelCreate()"><i class="fa fa-angle-left"></i> Voltar</button>
+                        <button class="btn btn-sm btn-success" ng-click="$ctrl.createDam()" ng-disabled="$ctrl.carregando">
+                            <span ng-hide="$ctrl.carregando"><i class="fa fa-check"></i> Salvar</span>
+                            <span ng-show="$ctrl.carregando"><i class="fa fa-spinner fa-spin"></i> Salvando...</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <form role="form" name="formCreate" novalidate ng-submit="$ctrl.createDam()">
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group" show-errors>
+                                        <label for="CodCliente">Cód. Cliente</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="CodCliente" name="CodCliente" ng-model="$ctrl.dam.codigoCliente" required>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default btn-flat" ng-click="$ctrl.buscarCliente()"><i class="fa fa-search"></i></button>
+                                            </span>
+                                        </div>
+                                        <span id="CodCliente-error" class="help-block help-block-error" ng-if="formCreate.CodCliente.$error.required && !formCreate.CodCliente.$untouched">
+                                                O campo é obrigatório.</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group" show-errors>
+                                        <label for="Paciente">Paciente</label>
+                                        <input type="text" class="form-control" id="Paciente" name="Paciente" ng-model="$ctrl.dam.paciente" required readonly>
+                                        <span id="Paciente-error" class="help-block help-block-error" ng-if="formCreate.Paciente.$error.required && !formCreate.Paciente.$untouched">
+                                            O campo é obrigatório.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group" show-errors>
+                                        <label for="CRM">Número CRM</label>
+                                        <input type="text" class="form-control" id="CRM" name="CRM" ng-model="$ctrl.dam.numeroCrm" required readonly>
+                                        <span id="CRM-error" class="help-block help-block-error" ng-if="formCreate.CRM.$error.required && !formCreate.CRM.$untouched">
+                                                O campo é obrigatório.</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <label for="Medico">Médico</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="Medico" name="Medico" ng-model="$ctrl.dam.medico" required ng-readonly="$ctrl.desabilitaMedico">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default btn-flat" ng-click="$ctrl.buscarMedico()"><i class="fa fa-search"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group" show-errors>
+                                        <label for="Solicitacao">Solicitação</label>
+                                        <textarea type="text" class="form-control" id="Solicitacao" name="Solicitacao" ng-model="$ctrl.dam.solicitacao" required rows="3"></textarea>
+                                        <span id="Solicitacao-error" class="help-block help-block-error" ng-if="formCreate.Solicitacao.$error.required && !formCreate.Solicitacao.$untouched">
+                                                O campo é obrigatório.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.box-body -->
+                <!-- Loading -->
+                <div class="overlay" ng-show="$ctrl.carregando">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+                <!-- end loading -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col-md-12 -->
+    </div>
+    <!-- /.row -->
+</section>

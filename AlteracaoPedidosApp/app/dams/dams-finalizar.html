@@ -1,0 +1,51 @@
+<div class="modal-header">
+    <button type="button" class="close" aria-hidden="true" ng-click="$ctrl.fecharModal()">×</button>
+    <h4 class="modal-title" id="dgAdicionarLabel">Atendimento do DAM {{ $ctrl.dam.id }}</h4>
+</div>
+<div class="modal-body">
+    <form role="form" name="formUpdate" novalidate>
+        <div class="form-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group" show-errors>
+                        <label for="motivoId">Motivo</label>
+                        <select name="motivoId" id="motivoId" class="form-control"
+                                ng-model="$ctrl.dam.motivoId" ng-options="u.id as u.descricao for u in $ctrl.motivos" required>
+                            <option value="">Escolha um motivo</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group" show-errors>
+                        <label for="solucaoId">Solução</label>
+                        <select name="solucaoId" id="solucaoId" class="form-control"
+                                ng-model="$ctrl.dam.solucaoId" ng-options="u.id as u.descricao for u in $ctrl.solucoes" required>
+                            <option value="">Escolha uma solução</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group" show-errors>
+                        <label for="Final">Posição Final</label>
+                        <textarea type="text" class="form-control" id="Final" name="Final" ng-model="$ctrl.dam.posicaoFinal" required rows="3"></textarea>
+                        <span id="Final-error" class="help-block help-block-error" ng-if="formUpdate.Final.$error.required && !formUpdate.Final.$untouched">
+                                O campo é obrigatório.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row" ng-if="$ctrl.substituicaoAtivoId === $ctrl.dam.motivoId">
+        <div class="col-md-12">
+            <dams-ativos-component ativos="$ctrl.dam.ativosSubstituidos" dam-id="$ctrl.dam.id" atender="true"></dams-ativos-component>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+        <button class="btn btn-success" aria-hidden="true" ng-click="$ctrl.finalizarDam()"><i class="fa fa-check"></i> Salvar</button>
+    <button class="btn btn-default" aria-hidden="true" ng-click="$ctrl.fecharModal()"><i class="fa fa-times-circle-o"></i> Fechar</button>
+</div>

@@ -1,0 +1,163 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        DAM #{{ $ctrl.dam.id }}
+        <small class="label bg-green" ng-if="$ctrl.dam.finalizado">Finalizado</small>
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">DAM</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-sm" ng-click="$ctrl.voltar()"><i class="fa fa-angle-left"></i> Voltar</button>
+                        <button class="btn btn-success btn-sm" ng-click="$ctrl.exibeIniciarAtendimento()" ng-if="$ctrl.dam.solucionadorId === null" has-permission="dam:atender"><i class="fa fa-check"></i> Iniciar Atendimento</button>
+                        <button class="btn btn-success btn-sm" ng-click="$ctrl.abrirModalAtender($ctrl.dam)" ng-if="$ctrl.exibePosicoes"><i class="fa fa-plus"></i> Adicionar Posição</button>
+                        <button class="btn btn-success btn-sm" ng-click="$ctrl.abrirModalFinalizar($ctrl.dam)" ng-if="$ctrl.exibeAtender" has-permission="dam:atender"><i class="fa fa-check"></i> Finalizar Atendimento</button>
+                        <button class="btn btn-success btn-sm" ng-click="$ctrl.exibeFinalizarDam()" ng-if="$ctrl.exibeFinalizar"><i class="fa fa-check"></i> Finalizar Dam</button>
+                        <a class="btn btn-warning btn-sm" ui-sref="app.damsUpdate({ damId: $ctrl.dam.id })" ng-if="$ctrl.dam.solucionadorId === null" has-permission="dam:editar"><i class="fa fa-pencil"></i> Editar</a>
+                        <button class="btn btn-primary btn-sm" ng-click="$ctrl.abrirModalImagens($ctrl.dam)" ng-if="$ctrl.exibeImagem"><i class="fa fa-file-image-o"></i> Imagens</button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="nav-tabs-custom">
+                        <uib-tabset active="active">
+                            <uib-tab index="0" heading="Dados Gerais">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <strong>Atendente: </strong> {{ $ctrl.dam.atendenteNome }}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <strong>Data Abertura: </strong> {{ $ctrl.dam.dataAbertura | date: 'dd/MM/yyyy HH:mm:ss' }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <strong>Cód. Cliente: </strong> {{ $ctrl.dam.codigoCliente }}
+                                    </div>
+                                    <div class="col-md-5">
+                                        <strong>Paciente: </strong> {{ $ctrl.dam.paciente }}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <strong>Data Última Atualização: </strong> {{ $ctrl.dam.dataUltimaAtualizacao | date: 'dd/MM/yyyy HH:mm:ss' }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <strong>CRM: </strong> {{ $ctrl.dam.numeroCrm }}
+                                    </div>
+                                    <div class="col-md-9">
+                                        <strong>Médico: </strong> {{ $ctrl.dam.medico }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <strong>Solicitação: </strong> {{ $ctrl.dam.solicitacao }}
+                                    </div>
+                                </div>
+                                <hr ng-if="$ctrl.dam.solucionadorId !== null">
+                                <div class="row" ng-if="$ctrl.dam.solucionadorId !== null">
+                                    <div class="col-md-12">
+                                        <strong>Solucionador: </strong> {{ $ctrl.dam.solucionadorNome }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6" ng-if="$ctrl.dam.dataInicioAtendimento !== null">
+                                        <strong>Data início do atendimento: </strong> {{ $ctrl.dam.dataInicioAtendimento | date: 'dd/MM/yyyy HH:mm:ss' }}
+                                    </div>
+                                    <div class="col-md-6" ng-if="$ctrl.dam.dataResolucao !== null">
+                                        <strong>Data de resolução: </strong> {{ $ctrl.dam.dataResolucao | date: 'dd/MM/yyyy HH:mm:ss' }}
+                                    </div>
+                                </div>
+
+                                <hr ng-if="$ctrl.dam.motivoId !== null">
+                                <div class="row" ng-if="$ctrl.dam.motivoId !== null">
+                                    <div class="col-md-12">
+                                        <strong>Motivo: </strong> {{ $ctrl.dam.motivoDescricao }}
+                                    </div>
+                                </div>
+                                <div class="row" ng-if="$ctrl.dam.solucaoId !== null">
+                                    <div class="col-md-12">
+                                        <strong>Solução: </strong> {{ $ctrl.dam.solucaoDescricao }}
+                                    </div>
+                                </div>
+                                <div class="row" ng-if="$ctrl.dam.posicaoFinal !== null" style="margin-bottom: 20px;">
+                                    <div class="col-md-12">
+                                        <strong>Posição Final: </strong> {{ $ctrl.dam.posicaoFinal }}
+                                    </div>
+                                </div>
+                            </uib-tab>
+                            <uib-tab index="1" heading="Posições">
+                                <ul class="timeline timeline-inverse">
+                                    <li class="time-label" ng-repeat-start="posicao in $ctrl.posicoes">
+                                        <span class="bg-phito">{{ posicao.data | date: 'dd/MM/yyyy' }}</span>
+                                    </li>
+                                    <li ng-repeat="atendimento in posicao.atendimentos" ng-repeat-end>
+                                        <i ng-class="{'fa fa-comments bg-phito': atendimento.tipo === null,
+                                                      'fa fa-pencil-square-o bg-yellow': atendimento.tipo == 'PosicaoFinal',
+                                                      'fa fa-check-circle-o bg-green': atendimento.tipo == 'Finalizado'}"></i>
+                                        <div class="timeline-item">
+                                            <span class="time"><i class="fa fa-clock-o"></i> {{ atendimento.data | date: 'HH:mm:ss' }}</span>
+                                            <h3 class="timeline-header"><span ng-if="atendimento.tipo == 'PosicaoFinal'">Posição Final da Solucionadora</span> {{ atendimento.usuarioNome }}</h3>
+                                            <div class="timeline-body">
+                                                {{ atendimento.posicao }}
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-clock-o bg-gray"></i>
+                                    </li>
+                                </ul>
+                                <br />
+                                <button type="button" class="btn btn-primary" ng-if="$ctrl.dam.posicoesNaoLidas" ng-click="$ctrl.exibeMarcarPosicoes()"><i class="fa fa-check"></i> Marcar como Lidos</button>
+                            </uib-tab>
+                            <uib-tab index="2" heading="Imagens">
+                                <div class="row" ng-repeat="imagem in $ctrl.dam.imagens">
+                                    <div class="col-md-12" ng-if="imagem.isImagem">
+                                        <img class="img-responsive img-thumbnail" ng-src="{{ $ctrl.caminhoImagem }}/{{ imagem.caminho }}" />
+                                    </div>
+                                    <div class="col-md-12" ng-if="!imagem.isImagem">
+                                        <a href="{{ $ctrl.caminhoImagem }}/{{ imagem.caminho }}" target="_blank" class="btn btn-app"><i class="fa fa-file-pdf-o"></i>Arquivo</a>
+                                    </div>
+                                </div>
+                            </uib-tab>
+                            <uib-tab index="3" heading="Ativos Substituídos">
+                                <dams-ativos-component ativos="$ctrl.dam.ativosSubstituidos" dam-id="$ctrl.dam.id" atender="false"></dams-ativos-component>
+                            </uib-tab>
+                            <uib-tab index="4" heading="Histórico">
+                                <ul class="timeline timeline-inverse">
+                                    <li ng-repeat="historico in $ctrl.dam.historico">
+                                        <i class="fa fa-comments bg-phito"></i>
+                                        <div class="timeline-item">
+                                            <span class="time"><i class="fa fa-clock-o"></i> {{ historico.data | date: 'dd/MM/yyyy HH:mm:ss' }}</span>
+                                            <h3 class="timeline-header">{{ historico.usuario }}</h3>
+                                            <div class="timeline-body">
+                                                {{ historico.posicao }}
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-clock-o bg-gray"></i>
+                                    </li>
+                                </ul>
+                            </uib-tab>
+                        </uib-tabset>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+                <!-- Loading -->
+                <div class="overlay" ng-show="$ctrl.carregando">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+                <!-- end loading -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col-md-12 -->
+    </div>
+    <!-- /.row -->
+</section>

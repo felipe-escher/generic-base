@@ -17,7 +17,7 @@ export function runBlock(authService: auth.IAuthService, authz: any, $rootScope:
     });
     authz.setPermissions(authService.autenticacao.permissoes);
     moment.locale('pt-br');
-    $rootScope.title = 'Alteração de Filial - Phito Fórmulas v.' + appSettings.versao;
+    $rootScope.title = 'Alteração de Filial v.' + appSettings.versao;
 }
 runBlock.$inject = ['AuthService', 'authz', '$rootScope', 'appSettings'];
 

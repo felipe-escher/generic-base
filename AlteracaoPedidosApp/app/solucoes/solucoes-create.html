@@ -1,0 +1,47 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Solução
+        <small>incluir nova</small>
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Nova Solução</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-sm" ng-click="$ctrl.cancelCreate()"><i class="fa fa-angle-left"></i> Voltar</button>
+                        <button class="btn btn-sm btn-success" ng-click="$ctrl.createSolucao()" ng-disabled="$ctrl.carregando">
+                            <span ng-hide="$ctrl.carregando"><i class="fa fa-check"></i> Salvar</span>
+                            <span ng-show="$ctrl.carregando"><i class="fa fa-spinner fa-spin"></i> Salvando...</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <form role="form" name="formCreate" novalidate ng-submit="$ctrl.createSolucao()">
+                        <div class="form-group" show-errors>
+                            <label for="Descricao">Descrição</label>
+                            <input type="text" class="form-control" id="Descricao" name="Descricao" ng-model="$ctrl.solucao.descricao" required>
+                            <span id="Descricao-error" class="help-block help-block-error"
+                                ng-if="formCreate.Descricao.$error.required && !formCreate.Descricao.$untouched">
+                                O campo Descrição é obrigatório.</span>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.box-body -->
+                <!-- Loading -->
+                <div class="overlay" ng-show="$ctrl.carregando">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+                <!-- end loading -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col-md-12 -->
+    </div>
+    <!-- /.row -->
+</section>

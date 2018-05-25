@@ -1,0 +1,24 @@
+<div class="modal-header">
+    <button type="button" class="close" aria-hidden="true" ng-click="$ctrl.fecharModal()">×</button>
+    <h4 class="modal-title" id="dgAdicionarLabel">Atendimento do DAM {{ $ctrl.dam.id }}</h4>
+</div>
+<div class="modal-body">
+    <form role="form" name="formUpdate" novalidate>
+        <div class="form-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group" show-errors>
+                        <label for="Posical">Posição</label>
+                        <textarea type="text" class="form-control" id="Posical" name="Posical" ng-model="$ctrl.posicao" required rows="3"></textarea>
+                        <span id="Posical-error" class="help-block help-block-error" ng-if="formUpdate.Posical.$error.required && !formUpdate.Posical.$untouched">
+                                O campo é obrigatório.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+        <button class="btn btn-success" aria-hidden="true" ng-click="$ctrl.finalizarPosicao()"><i class="fa fa-check"></i> Salvar</button>
+    <button class="btn btn-default" aria-hidden="true" ng-click="$ctrl.fecharModal()"><i class="fa fa-times-circle-o"></i> Fechar</button>
+</div>

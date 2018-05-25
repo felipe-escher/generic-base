@@ -1,0 +1,64 @@
+<div class="row" ng-if="$ctrl.atender">
+    <div class="col-md-12">
+        <fieldset>
+            <legend>Adicionar Ativo Substituído</legend>
+            <form role="form" name="formCreate" novalidate ng-submit="$ctrl.addAtivoSubstituido()">
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group" show-errors>
+                                <label for="Falta">Ativo em Falta</label>
+                                <input type="text" class="form-control" id="Falta" name="Falta" ng-model="$ctrl.emFalta" required>
+                                <span id="Falta-error" class="help-block help-block-error" ng-if="formUpdate.Falta.$error.required && !formUpdate.Falta.$untouched">
+                                        O campo é obrigatório.</span>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group" show-errors>
+                                <label for="Substituto">Ativo Substituto</label>
+                                <input type="text" class="form-control" id="Substituto" name="Substituto" ng-model="$ctrl.substituto" required>
+                                <span id="Substituto-error" class="help-block help-block-error" ng-if="formUpdate.Substituto.$error.required && !formUpdate.Substituto.$untouched">
+                                    O campo é obrigatório.</span>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-success" style="margin-top: 25px;"><i class="fa fa-plus"></i> Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </fieldset>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive" ng-if="$ctrl.ativos.length > 0">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th> Data </th>
+                        <th> Ativo em Falta </th>
+                        <th> Ativo Substituto </th>
+                        <th style="width: 50px;" ng-if="$ctrl.atender">Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="ativo in $ctrl.ativos">
+                        <td>{{ ativo.data | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+                        <td>{{ ativo.ativoEmFalta }}</td>
+                        <td>{{ ativo.ativoSubstituto }}</td>
+                        <td class="sem-quebra" ng-if="$ctrl.atender">
+                            <a href="#" class="btn btn-xs btn-danger" ng-click="$ctrl.deleteAtivoSubstituido(ativo.id)" uib-tooltip="Deletar">
+                                <i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.table-responsive dam.ativosSubstituidos.length > 0 -->
+        <div class="callout callout-info" ng-if="$ctrl.ativos.length === 0">
+            Nenhum ativo substituído.
+        </div>
+        <!-- /.callout callout-info dam.ativosSubstituidos.length === 0 -->
+    </div>
+</div>
