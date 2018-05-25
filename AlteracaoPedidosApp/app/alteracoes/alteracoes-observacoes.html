@@ -1,0 +1,23 @@
+<div class="modal-header">
+        <button type="button" class="close" aria-hidden="true" ng-click="$ctrl.fecharModal()">×</button>
+        <h4 class="modal-title" id="dgAdicionarLabel">Alterar Observações</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-xs-12">
+                <form role="form" name="formUpdate" novalidate ng-submit="$ctrl.updateAlteracao()">
+                    <div class="form-group">
+                        <label for="Observacao">Observações</label>
+                        <textarea type="text" class="form-control" id="Observacao" name="Observacao" ng-model="$ctrl.observacoes" rows="3">
+                        </textarea>
+                    </div>
+                </form>
+            </div>
+            <!-- /.col-xs-12 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" aria-hidden="true" ng-click="$ctrl.updateAlteracao()"><i class="fa fa-check"></i> Salvar</button>
+        <button class="btn btn-default" aria-hidden="true" ng-click="$ctrl.fecharModal()"><i class="fa fa-times-circle-o"></i> Fechar</button>
+    </div>

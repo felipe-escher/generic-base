@@ -1,0 +1,29 @@
+@media print {
+    body {
+        font-size: 10px;
+    }
+
+    .portlet.light {
+        padding: 10px 10px 5px 10px;
+    }
+
+    .portlet.light > .portlet-title {
+        min-height: 5px;
+    }
+
+    .portlet.light > .portlet-title > .caption {
+        padding: 0 0 10px 0;
+    }
+
+    .portlet.light > .portlet-title > .caption > .caption-subject {
+        font-size: 12px;
+    }
+
+    .table thead tr th {
+        font-size: 12px;
+    }
+
+    .table td, .table th {
+        font-size: 10px;
+    }
+}

@@ -1,0 +1,50 @@
+<div class="login">
+    <div class="row">
+        <div class="col-md-6 hidden-xs hidden-sm">
+            <div class="login-bg" style="background-image:url(assets/img/fundoLogin.png)">
+                <img class="login-logo" src="assets/img/logoLogin.png" /> </div>
+        </div>
+        <div class="col-md-6 col-sm-12 login-container">
+            <div class="login-content">
+                <h1>Alteração de Pedidos Login</h1>
+                <p> Informe seu usuário e senha. </p>
+                <form class="form" method="post" name="formLogin" ng-submit="$ctrl.login()">
+                    <div class="alert alert-danger" ng-hide="$ctrl.mensagem == ''">
+                        <button class="close" data-close="alert"></button>
+                        <span>{{$ctrl.mensagem}} </span>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group has-feedback">
+                                <input class="form-control" type="text"
+                                autocomplete="off" placeholder="Usuário"
+                                name="usuario" data-ng-model="$ctrl.loginData.userName"
+                                ng-class="{'has-error': formLogin.usuario.$error.required}"
+                                required />
+                                <span class="fa fa-user form-control-feedback"></span>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group has-feedback">
+                                <input class="form-control" type="password"
+                                autocomplete="off" placeholder="Senha" name="senha"
+                                data-ng-model="$ctrl.loginData.password"
+                                ng-class="{'has-error': formLogin.senha.$error.required}"
+                                required />
+                                <span class="fa fa-lock form-control-feedback"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right">
+                            <button class="btn btn-primary" type="submit" ng-disabled="$ctrl.logando">
+                                <span ng-hide="$ctrl.logando">Login</span>
+                                <span ng-show="$ctrl.logando"><i class="fa fa-spinner fa-spin"></i></span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

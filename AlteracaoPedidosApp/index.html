@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-Br" ng-strict-di>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="expires" content="0">
+    <title ng-bind="title">Alteração de Filial - Phito Fórmulas</title>
+
+
+    <!-- build:css styles/vendor.css-->
+    <link rel="stylesheet" href="node_modules/sweetalert/lib/sweet-alert.css" />
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="node_modules/toastr/build/toastr.css" />
+    <link rel="stylesheet" href="node_modules/angular-bootstrap-datetimepicker/src/css/datetimepicker.css" />
+    <link rel="stylesheet" href="node_modules/angular-ui-select/select.css" />
+    <!-- endbuild -->
+
+    <!-- build:css styles/app.css-->
+    <link rel="stylesheet" href="/assets/css/AdminLTE.css">
+    <link rel="stylesheet" href="/assets/css/custom.css">
+    <link rel="stylesheet" href="/assets/css/skins/skin-phito.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap-phito.css">
+    <link rel="stylesheet" href="/assets/css/animacoes.css">
+    <link rel="stylesheet" href="/assets/css/print.css">
+    <!-- endbuild -->
+
+    <!-- build:js js/app.js-->
+    <script src="node_modules/systemjs/dist/system.js" type="text/javascript"></script>
+    <script src="systemjs.config.js"  type="text/javascript"></script>
+    <!-- inject:js -->
+    <!-- endinject -->
+    <!-- endbuild -->
+    <!-- build:systemjs -->
+    <script src="//unpkg.com/ui-router-visualizer@2"  type="text/javascript"></script>
+    <script>
+        System.import('./app/main.js').catch(function(err){ console.error(err); });
+    </script>
+    <!-- endbuild -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="hold-transition skin-phito sidebar-mini">
+    <div class="wrapper" ui-view></div>
+</body>
+</html>

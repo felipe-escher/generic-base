@@ -1,0 +1,18 @@
+{
+  "apiServiceBaseUri": "http://localhost:53776",
+  "apiLoginUri": "http://localhost:50741",
+  "clientId": "alterarpedido-app",
+  "versao": "1.2.3",
+  "filiais": [
+    { "filial": "1 - Matriz" },
+    { "filial": "2 - Iguatemi" },
+    { "filial": "4 - Entregas" },
+    { "filial": "8 - Zona Norte" }
+  ],
+  "setoresRequisitantes": [
+    { "id": 1, "setor": "Atendimento Matriz" },
+    { "id": 2, "setor": "Atendimento Esplanada" },
+    { "id": 4, "setor": "Tele-Atendimento" },
+    { "id": 8, "setor": "Atendimento Zona Norte" }
+  ]
+}

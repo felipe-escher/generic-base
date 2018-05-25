@@ -1,0 +1,67 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Usuários
+        <small>permissões do usuário</small>
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title"><i class="fa fa-user"></i> Permissões</h3>
+                    <div class="box-tools pull-right">
+                        <a ui-sref="app.usuariosListar" class="btn btn-sm btn-default"><i class="fa fa-angle-left"></i> Voltar</a>
+                        <button class="btn btn-sm btn-success" ng-click="$ctrl.alterarPermissoes()" ng-disabled="$ctrl.carregando">
+                            <span ng-hide="$ctrl.carregando"><i class="fa fa-check"></i> Salvar</span>
+                            <span ng-show="$ctrl.carregando"><i class="fa fa-spinner fa-spin"></i> Salvando...</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="nav-tabs-custom">
+                        <uib-tabset>
+                            <uib-tab heading="Dados Usuário" index="dadosUsuario">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="Email">Email</label>
+                                        <input type="text" class="form-control" id="Email" name="Email" ng-model="$ctrl.usuario.email">
+                                    </div>
+                                </form>
+                            </uib-tab>
+                            <uib-tab ng-repeat="tab in $ctrl.permissoes" heading="{{tab.titulo}}" index="tab.href">
+                                <form role="form">
+                                    <div class="form-group form-md-checkboxes">
+                                        <div class="md-checkbox-list">
+                                            <div class="md-checkbox" ng-repeat="item in tab.permissoes">
+                                                <input type="checkbox" id="{{ item.value }}" class="md-check" value="{{ item.value }}"
+                                                    ng-click="$ctrl.togglePermissoes(item.value)" ng-checked="$ctrl.usuario.permissoes.indexOf(item.value) > -1" >
+                                                <label for="{{ item.value }}">
+                                                    <span></span>
+                                                    <span class="check"></span>
+                                                    <span class="box"></span> {{ item.titulo }} </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </uib-tab>
+                        </uib-tabset>
+                    </div>
+                    <!-- /.tabbable-custom -->
+                </div>
+                <!-- /.box-body -->
+                <!-- Loading -->
+                <div class="overlay" ng-show="$ctrl.carregando">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+                <!-- end loading -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col-md-12 -->
+    </div>
+    <!-- /.row -->
+</section>

@@ -1,0 +1,116 @@
+.btn:active,
+.btn.active {
+    background-image: none;
+}
+
+.btn-default {
+    background-color: #fafafa;
+    color: #666;
+    border-color: #ddd;
+}
+
+.btn-primary {
+    background-color: #1fbbb0;
+    border-color: transparent;
+}
+
+.btn-primary:active,
+.btn-primary.active {
+    background-color: #1fbbb0;
+    border-color: #317075;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary,
+.box.box-solid>.box-header .btn-primary:hover,
+.box.box-solid>.box-header .btn-success a:hover {
+    border-color: #348289;
+    background-color: #009a97;
+}
+
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.open>.dropdown-toggle.btn-primary:hover,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.open>.dropdown-toggle.btn-primary:focus,
+.btn-primary.focus:active,
+.btn-primary.active.focus,
+.open>.dropdown-toggle.btn-primary.focus {
+    background-color: #348289;
+    border-color: #317075;
+    color: #fff;
+}
+
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled.focus,
+.btn-primary[disabled].focus,
+fieldset[disabled] .btn-primary.focus {
+    background-color: #348289;
+    border-color: #317075;
+}
+
+.box.box-solid>.box-header .btn.btn-default {
+    background-color: #f4f4f4;
+}
+
+.box.box-solid>.box-header .btn.btn-default:hover,
+.box.box-solid>.box-header .btn.btn-default a:hover {
+    background-color: #e7e7e7;
+}
+
+.box.box-solid>.box-header .btn-success:hover,
+.box.box-solid>.box-header .btn-success a:hover {
+    background-color: #008d4c;
+}
+
+.box.box-solid>.box-header .btn-info:hover,
+.box.box-solid>.box-header .btn-info a:hover {
+    background-color: #00acd6;
+}
+
+.box.box-solid>.box-header .btn-danger:hover,
+.box.box-solid>.box-header .btn-danger a:hover {
+    background-color: #d73925;
+}
+
+.box.box-solid>.box-header .btn-warning:hover,
+.box.box-solid>.box-header .btn-warning a:hover {
+    background-color: #e08e0b;
+}
+
+.dropdown-menu>li>a:hover,
+.dropdown-menu>li>a:focus,
+.dropdown-menu>.active>a,
+.dropdown-menu>.active>a:hover,
+.dropdown-menu>.active>a:focus {
+    background-color: #009a97;
+    color: #FFF;
+}
+
+.pagination>.active>a,
+.pagination>.active>span,
+.pagination>.active>a:hover,
+.pagination>.active>span:hover,
+.pagination>.active>a:focus,
+.pagination>.active>span:focus {
+    background-color: #009a97;
+}
+
+.panel-phito {
+    border-color: #009A97;
+}
+
+.panel-phito>.panel-heading {
+    background-color: #1fbbb0;
+    border-color: #009A97;
+    color: #FFF;
+}

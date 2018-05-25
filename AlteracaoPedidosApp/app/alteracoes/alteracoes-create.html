@@ -1,0 +1,150 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Alteração de Pedido
+        <small>incluir nova</small>
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Nova Alteração</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-sm" ng-click="$ctrl.cancelCreate()"><i class="fa fa-angle-left"></i> Voltar</button>
+                        <button class="btn btn-sm btn-success" ng-click="$ctrl.createAlteracao()" ng-disabled="$ctrl.carregando">
+                            <span ng-hide="$ctrl.carregando"><i class="fa fa-check"></i> Salvar</span>
+                            <span ng-show="$ctrl.carregando"><i class="fa fa-spinner fa-spin"></i> Salvando...</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <form role="form" name="formCreate" novalidate ng-submit="$ctrl.createAlteracao()">
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group" show-errors>
+                                        <label for="numPedido">Nº Pedido</label>
+                                        <input type="text" class="form-control" id="numPedido" name="numPedido" ng-model="$ctrl.alteracao.numPedido" required>
+                                        <span id="numPedido-error" class="help-block help-block-error" ng-if="formCreate.numPedido.$error.required && !formCreate.numPedido.$untouched">
+                                                O campo é obrigatório.</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group" show-errors>
+                                        <label for="pedidosCadados">Pedidos Casados / Varejos</label>
+                                        <input type="text" class="form-control" id="pedidosCadados" name="pedidosCadados" ng-model="$ctrl.alteracao.pedidosCadados">
+                                        <span id="pedidosCadados-error" class="help-block help-block-error" ng-if="formCreate.pedidosCadados.$error.required && !formCreate.pedidosCadados.$untouched">
+                                            O campo é obrigatório.</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" show-errors>
+                                        <label for="setorRequisitante">Setor Requisitante</label>
+                                        <select name="setorRequisitante" id="setorRequisitante" class="form-control" ng-model="$ctrl.alteracao.setorRequisitante" required
+                                            ng-options="s.id as s.setor for s in $ctrl.setores">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4>Filial</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group" show-errors>
+                                        <label for="filialDe">De</label>
+                                        <select name="filialDe" id="filialDe" class="form-control" ng-model="$ctrl.alteracao.filialDe" ng-required="$ctrl.alteracao.filialPara"
+                                            ng-options="f.filial as f.filial for f in $ctrl.filiais">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" show-errors>
+                                        <label for="filialPara">Para</label>
+                                        <select name="filialPara" id="filialPara" class="form-control" ng-model="$ctrl.alteracao.filialPara" ng-required="$ctrl.alteracao.filialDe"
+                                            ng-options="f.filial as f.filial for f in $ctrl.filiais">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4>Horário de retirada do cliente</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="horarioRetiradaDe">De</label>
+                                    <div class="input-group">
+                                        <span class="input-group-btn" uib-dropdown>
+                                            <button class="btn btn-primary" type="button" uib-dropdown-toggle ng-disabled="disabled"><i class="fa fa-calendar"></i></button>
+                                            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                                <datetimepicker data-ng-model="$ctrl.alteracao.horarioRetiradaDe" />
+                                            </ul>
+                                        </span>
+                                        <input type="text" class="form-control" id="horarioRetiradaDe" name="horarioRetiradaDe" ng-model="$ctrl.alteracao.horarioRetiradaDe" ng-required="$ctrl.alteracao.horarioRetiradaPara" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" show-errors>
+                                        <label for="horarioRetiradaPara">Para</label>
+                                        <div class="input-group">
+                                            <span class="input-group-btn" uib-dropdown>
+                                                <button class="btn btn-primary" type="button" uib-dropdown-toggle ng-disabled="disabled"><i class="fa fa-calendar"></i></button>
+                                                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                                    <datetimepicker data-ng-model="$ctrl.alteracao.horarioRetiradaPara" />
+                                                </ul>
+                                            </span>
+                                            <input type="text" class="form-control" id="horarioRetiradaPara" name="horarioRetiradaPara" ng-model="$ctrl.alteracao.horarioRetiradaPara" ng-required="$ctrl.alteracao.horarioRetiradaDe" readonly>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <h4>Endereço para entrega</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group" show-errors>
+                                            <label for="motivo">Novo endereço</label>
+                                        <textarea type="text" class="form-control" id="enderecoEntrega" name="enderecoEntrega" ng-model="$ctrl.alteracao.enderecoEntrega" rows="3" ng-required="!$ctrl.alteracao.filialPara && !$ctrl.alteracao.horarioRetiradaPara"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                        <div class="form-group" show-errors>
+                                            <label for="numRomaneio">Nº Romaneio</label>
+                                            <input type="text" class="form-control" id="numRomaneio" name="numRomaneio" ng-model="$ctrl.alteracao.numRomaneio">
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group" show-errors>
+                                        <label for="motivo">Motivo</label>
+                                        <textarea type="text" class="form-control" id="motivo" name="motivo" ng-model="$ctrl.alteracao.motivo" required rows="3"></textarea>
+                                        <span id="motivo-error" class="help-block help-block-error" ng-if="formCreate.motivo.$error.required && !formCreate.motivo.$untouched">
+                                                O campo é obrigatório.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="observacoes">Observações</label>
+                                        <textarea type="text" class="form-control" id="observacoes" name="observacoes" ng-model="$ctrl.alteracao.observacoes" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.box-body -->
+                <!-- Loading -->
+                <div class="overlay" ng-show="$ctrl.carregando">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+                <!-- end loading -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col-md-12 -->
+    </div>
+    <!-- /.row -->
+</section>

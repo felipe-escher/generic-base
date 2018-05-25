@@ -1,0 +1,186 @@
+/*
+ * Skin: Phito
+ * -----------
+ */
+
+.main-sidebar, .left-side {
+  padding-top: 61px;
+}
+
+.main-header {
+    background-color: #FFF;
+    border-bottom: 15px solid #1fbbb0;
+}
+
+.content-wrapper, .right-side {
+  background: #f9f9f9;
+}
+
+.box {
+  box-shadow: #e0e0e0 0em 0em 0.3125em 0.125em;
+}
+
+.box.box-primary {
+  border-top-color: #1fbbb0;
+}
+
+.nav-tabs-custom .nav-tabs > li.active {
+  border-top-color: #1fbbb0;
+}
+
+/* skin-phito navbar */
+.skin-phito .main-header {
+  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+}
+.skin-phito .main-header .navbar-toggle {
+  color: #333;
+}
+.skin-phito .main-header .navbar-brand {
+  color: #333;
+  border-right: 1px solid #eee;
+}
+.skin-phito .main-header .navbar {
+  background-color: #ffffff;
+}
+.skin-phito .main-header .navbar .nav > li > a {
+  color: #aeaeae;
+}
+.skin-phito .main-header .navbar .nav > li > a:hover,
+.skin-phito .main-header .navbar .nav > li > a:active,
+.skin-phito .main-header .navbar .nav > li > a:focus,
+.skin-phito .main-header .navbar .nav .open > a,
+.skin-phito .main-header .navbar .nav .open > a:hover,
+.skin-phito .main-header .navbar .nav .open > a:focus,
+.skin-phito .main-header .navbar .nav > .active > a {
+  background: #e9e9e9;
+  color: #4e4e4e;
+}
+.skin-phito .main-header .navbar .sidebar-toggle {
+  color: #aeaeae;
+}
+.skin-phito .main-header .navbar .sidebar-toggle:hover {
+  color: #4e4e4e;
+  background: #e9e9e9;
+}
+.skin-phito .main-header .navbar > .sidebar-toggle {
+  color: #aeaeae;
+}
+.skin-phito .main-header > .logo {
+  background-color: #ffffff;
+  color: #4e4e4e;
+  border-bottom: 0 solid transparent;
+}
+.skin-phito .main-header > .logo:hover {
+  background-color: #e9e9e9;
+}
+.skin-phito .main-header .logo small {
+  font-size: 10px;
+}
+@media (max-width: 767px) {
+  .skin-phito .main-header > .logo {
+    background-color: #ffffff;
+    color: #4e4e4e;
+    border-bottom: 0 solid transparent;
+    border-right: none;
+  }
+}
+.skin-phito .main-header li.user-header {
+  background-color: #222;
+}
+.skin-phito .content-header {
+  background: transparent;
+  box-shadow: none;
+}
+.skin-phito .wrapper,
+.skin-phito .main-sidebar,
+.skin-phito .left-side {
+  background-color: #e9e9e9;
+}
+.skin-phito .user-panel > .info,
+.skin-phito .user-panel > .info > a {
+  color: #444;
+}
+.skin-phito .sidebar-menu > li {
+  border-top: 1px solid #c9c3c5;
+  border-bottom: 0px solid #c9c3c5;
+}
+
+.skin-phito .sidebar-menu > li.header {
+  color: #4b646f;
+  background: #dcdcdc;
+}
+.skin-phito .sidebar-menu > li > a {
+  border-left: 3px solid transparent;
+}
+.skin-phito .sidebar-menu > li:hover > a,
+.skin-phito .sidebar-menu > li.active > a,
+.skin-phito .sidebar-menu > li > a.active {
+  color: #fff;
+  background: #1fbbb0;
+  border-left-color: #1fbbb0;
+}
+.skin-phito .sidebar-menu > li > .treeview-menu {
+  margin: 0 0;
+  background: #1fbbb0;
+}
+.skin-phito .sidebar a {
+  color: #555;
+}
+.skin-phito .sidebar a:hover {
+  text-decoration: none;
+}
+.skin-phito .treeview-menu > li > a {
+  color: #dfdfdf;
+}
+.skin-phito .treeview-menu > li > a.active,
+.skin-phito .treeview-menu > li.active > a,
+.skin-phito .treeview-menu > li > a:hover {
+  color: #fff;
+}
+.skin-phito .sidebar-form {
+  border-radius: 3px;
+  border: 1px solid #374850;
+  margin: 10px 10px;
+}
+.skin-phito .sidebar-form input[type="text"],
+.skin-phito .sidebar-form .btn {
+  box-shadow: none;
+  background-color: #374850;
+  border: 1px solid transparent;
+  height: 35px;
+}
+.skin-phito .sidebar-form input[type="text"] {
+  color: #666;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 2px;
+}
+.skin-phito .sidebar-form input[type="text"]:focus,
+.skin-phito .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+  background-color: #fff;
+  color: #666;
+}
+.skin-phito .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+  border-left-color: #fff;
+}
+.skin-phito .sidebar-form .btn {
+  color: #999;
+  border-top-left-radius: 0;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 0;
+}
+.skin-phito .pace .pace-progress {
+  background: #222;
+}
+.skin-phito .pace .pace-activity {
+  border-top-color: #222;
+  border-left-color: #222;
+}
+
+.skin-phito .bg-phito {
+  background-color: #1fbbb0 !important;
+  color: #ffffff !important;
+}

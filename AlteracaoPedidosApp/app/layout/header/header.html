@@ -1,0 +1,80 @@
+<header class="main-header">
+    <!-- Logo -->
+    <a href="/#" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>AP <small>v.{{ $ctrl.versao }}</small></b></span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>Alterar Filial <small>v.{{ $ctrl.versao }}</small></b></span>
+    </a>
+
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Ativar Navegação</span>
+        </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <!-- Status Menu -->
+                <li class="dropdown tasks-menu" has-permission="alteracoes:receber">
+                    <!-- Menu toggle button -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-flag-o"></i>
+                        <span class="label label-danger" ng-if="!$ctrl.dataService.atendenteConectado">1</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="header" ng-if="!$ctrl.dataService.atendenteConectado">Não foi possivel conectar ao Servidor de Notificação</li>
+                        <li class="header" ng-if="$ctrl.dataService.atendenteConectado">Serviço de notificação <span class="label label-success">OK</span> </li>
+                        <li>
+                            <!-- inner menu: contains the actual data -->
+                            <ul class="menu">
+                                <li ng-if="!$ctrl.dataService.atendenteConectado"><!-- Task item -->
+                                    <a href="#" ng-click="$ctrl.conectar()">
+                                    <h3>
+                                        Clique aqui para tentar novamente
+                                    </h3>
+                                    </a>
+                                </li>
+                                <!-- end task item -->
+                                <li ng-if="$ctrl.dataService.atendenteConectado"><!-- Task item -->
+                                    <a href="#" ng-click="$ctrl.desconectar()">
+                                    <h3>
+                                        Clique aqui para desconectar
+                                    </h3>
+                                    </a>
+                                </li>
+                                <!-- end task item -->
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!-- User Account Menu -->
+                <li class="dropdown user user-menu">
+                    <!-- Menu Toggle Button -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="glyphicon glyphicon-user"></i>
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- Menu Body -->
+                        <li class="user-body">
+                            <div class="row">
+                                <div class="col-xs-12 text-center">
+                                    {{ $ctrl.autenticacao.userName }}
+                                </div>
+                            </div>
+                            <!-- /.row -->
+                        </li>
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <div class="pull-right">
+                                <a href="#" ng-click="$ctrl.logOut()" class="btn btn-default btn-flat">Log Out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,176 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Alterações de Pedidos
+        <small>buscar</small>
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-solid hidden-print">
+                <div class="box-header">
+                    <h3 class="box-title"><i class="fa fa-search"></i> Opções</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <form role="form" name="formBuscar" novalidate>
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="dataDe">Solicitação De:</label>
+                                    <div class="form-group"
+                                    ng-class="{ 'has-error': (formBuscar.$dirty || formBuscar.dataDe.$touched) && formBuscar.dataDe.$invalid }">
+                                        <div class="input-group">
+                                            <input type="text" name="dataDe" class="form-control" id="dataDe" ng-model="$ctrl.dataService.dataDe" required
+                                            uib-datepicker-popup="{{'dd/MM/yyyy'}}" is-open="$ctrl.dataDePickOpen" datepicker-options="$ctrl.dateOptions">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" type="button" ng-click="$ctrl.dataDePick()"><i class="fa fa-calendar"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="dataAte">Solicitação até:</label>
+                                    <div class="form-group"
+                                    ng-class="{ 'has-error': (formBuscar.$dirty || formBuscar.dataAte.$touched) && formBuscar.dataAte.$invalid }">
+                                        <div class="input-group">
+                                            <input type="text" name="dataAte" class="form-control" id="dataAte" ng-model="$ctrl.dataService.dataAte" required
+                                            uib-datepicker-popup="{{'dd/MM/yyyy'}}" is-open="$ctrl.dataAtePickOpen" datepicker-options="$ctrl.dateOptions">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" type="button" ng-click="$ctrl.dataAtePick()"><i class="fa fa-calendar"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="SetorRequisitante">Setor Requisitante</label>
+                                        <select name="SetorRequisitante" id="SetorRequisitante" class="form-control" ng-model="$ctrl.setorRequisitante"
+                                            ng-options="s.id as s.setor for s in $ctrl.setores">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="numPedido">Num. Pedido</label>
+                                        <input type="text" name="numPedido" class="form-control" id="numPedido" ng-model="$ctrl.numPedido">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Solicitante">Solicitante</label>
+                                        <select name="Solicitante" id="Solicitante" class="form-control" ng-model="$ctrl.solicitanteId"
+                                            ng-options="u.id as u.nome for u in $ctrl.listaUsuarios">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="filialDe">Filial De:</label>
+                                        <select name="filialDe" id="filialDe" class="form-control" ng-model="$ctrl.filialDe"
+                                            ng-options="f.filial as f.filial for f in $ctrl.filiais">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="filialPara">Filial Para:</label>
+                                        <select name="filialPara" id="filialPara" class="form-control" ng-model="$ctrl.filialPara"
+                                            ng-options="f.filial as f.filial for f in $ctrl.filiais">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <div class="pull-right">
+                        <button class="btn btn-primary" type="button" ng-click="$ctrl.buscarAlteracoes()" ng-disabled="$ctrl.carregando">
+                            <span ng-hide="$ctrl.carregando"><i class="fa fa-search"></i> Buscar</span>
+                            <span ng-show="$ctrl.carregando"><i class="fa fa-spinner fa-spin"></i> Buscando...</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Loading -->
+                <div class="overlay" ng-show="$ctrl.carregando">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+            </div>
+            <!-- /.box -->
+            <div class="box box-solid visible-print-block">
+                <div class="box-header text-center">
+                    <h3 class="box-title">Alterações de pedidos</h3>
+                </div>
+                <div class="box-body">
+                    <h4 class="text-center">Solicitação De: {{ $ctrl.dataService.dataDe | date: 'dd/MM/yyyy' }} até {{ $ctrl.dataService.dataAte | date: 'dd/MM/yyyy' }}</h4>
+                </div>
+            </div>
+            <div class="box box-solid fade-in-up" ng-if="$ctrl.dataService.pesquisado">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Alterações de pedidos <span class="badge badge-default">{{ $ctrl.dataService.listaBuscar.length }}</span></h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-sm"><i class="fa fa-print" ng-click="$ctrl.imprimir()"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div ng-if="$ctrl.dataService.listaBuscar.length == 0">
+                        <div class="alert alert-block alert-info">
+                            <p> Nenhuma alteração localizada. </p>
+                        </div>
+                    </div>
+                    <div class="table-responsive" ng-if="$ctrl.dataService.listaBuscar.length > 0">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th> Num. Pedido </th>
+                                    <th> Casados </th>
+                                    <th> Data Solicitação </th>
+                                    <th> Filial De </th>
+                                    <th> Filial Para </th>
+                                    <th> Solicitante </th>
+                                    <th> Recebida Por </th>
+                                    <th style="width: 50px;" class="hidden-print"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="alteracao in $ctrl.dataService.listaBuscar">
+                                    <td>{{ alteracao.numPedido }} <span class="badge bg-green" ng-if="alteracao.finalizado">Finalizada</span></td>
+                                    <td>{{ alteracao.pedidosCadados }}</td>
+                                    <td>{{ alteracao.dataSolicitacao | date: 'dd/MM/yyyy H:mm' }}</td>
+                                    <td>{{ alteracao.filialDe }}</td>
+                                    <td>{{ alteracao.filialPara }}</td>
+                                    <td>{{ alteracao.solicitanteNome }}</td>
+                                    <td>{{ alteracao.recebedorNome }}</td>
+                                    <td class="sem-quebra hidden-print">
+                                        <a ui-sref="app.alteracoesDetalhar({ alteracaoId: alteracao.id })" class="btn btn-xs btn-primary" uib-tooltip="Detalhar">
+                                            <i class="fa fa-plus"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.box-body -->
+                <!-- Loading -->
+                <div class="overlay" ng-show="$ctrl.carregando">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+                <!-- end loading -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col-md-12 -->
+    </div>
+    <!-- /.row -->
+</section>

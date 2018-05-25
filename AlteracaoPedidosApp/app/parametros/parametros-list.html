@@ -1,0 +1,70 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Parâmetros
+        <small>listar cadastrados</small>
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Parâmetros <span class="badge badge-default">{{ $ctrl.parametros.length }}</span></h3>
+                    <div class="box-tools pull-right">
+                        <a ui-sref="app.parametrosCreate" class="btn btn-sm btn-primary" has-permission="parametros:adicionar" uib-tooltip="Adicionar">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="table-responsive" ng-if="$ctrl.parametros.length > 0">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th width="5%"> # </th>
+                                    <th> Nome </th>
+                                    <th> Argumento </th>
+                                    <th> Sub-Argumento</th>
+                                    <th> Descrição </th>
+                                    <th style="width: 50px;">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="parametro in $ctrl.parametros">
+                                    <td>{{parametro.id}}</td>
+                                    <td>{{parametro.nome}}</td>
+                                    <td>{{parametro.argumento}}</td>
+                                    <td>{{parametro.subArgumento}}</td>
+                                    <td>{{parametro.descricao}}</td>
+                                    <td class="sem-quebra">
+                                        <a ui-sref="app.parametrosUpdate({ parametroId: parametro.id })" class="btn btn-xs btn-warning" has-permission="parametros:editar" uib-tooltip="Editar">
+                                            <i class="fa fa-pencil"></i></a>
+                                        <a href="#" class="btn btn-xs btn-danger" ng-click="$ctrl.exibeDelete(parametro)" has-permission="parametros:deletar" uib-tooltip="Deletar">
+                                            <i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive parametros.length > 0 -->
+                    <div class="callout callout-info" ng-if="$ctrl.parametros.length === 0">
+                        Nenhum parâmetro cadastrado.
+                    </div>
+                    <!-- /.callout callout-info parametros.length === 0 -->
+                </div>
+                <!-- /.box-body -->
+                <!-- Loading -->
+                <div class="overlay" ng-show="$ctrl.carregando">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+                <!-- end loading -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col-md-12 -->
+    </div>
+    <!-- /.row -->
+</section>

@@ -1,0 +1,240 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        <form name="formDash">
+            <div class="row">
+                <div class="col-xs-4 col-md-8">
+                    Dashboard
+                    <small>dados & estatísticas</small>
+                </div>
+                <div class="pull-right col-xs-4 col-md-2 form-group">
+                    <div class="input-group">
+                        <input type="text" name="dataAte" class="form-control" id="dataAte" ng-model="$ctrl.dataService.dataAte" placeholder="Data Até" required
+                        uib-datepicker-popup="{{'dd/MM/yyyy'}}" is-open="$ctrl.dataAtePickOpen" ng-change="$ctrl.getDadosDashboard()" readonly>
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="button" ng-click="$ctrl.dataAtePick()"><i class="fa fa-calendar"></i></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="pull-right col-xs-4 col-md-2 form-group">
+                    <div class="input-group">
+                        <input type="text" name="dataDe" class="form-control" id="dataDe" ng-model="$ctrl.dataService.dataDe" placeholder="Data De" required
+                        uib-datepicker-popup="{{'dd/MM/yyyy'}}" is-open="$ctrl.dataDePickOpen" ng-change="$ctrl.getDadosDashboard()" readonly>
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="button" ng-click="$ctrl.dataDePick()"><i class="fa fa-calendar"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- TABLE: Novas Alterações -->
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Novas Alterações</h3>
+                    <div class="box-tools pull-right hidden-print">
+                        <button type="button" class="btn btn-box-tool" ng-click="$ctrl.imprimir()"><i class="fa fa-print"></i></button>
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div ng-if="$ctrl.novasAlteracoes.length > 0">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th> Num. Pedido </th>
+                                        <th> Solicitado Por </th>
+                                        <th> Alteração </th>
+                                        <th> Data Solicitação </th>
+                                        <th style="width: 50px;" class="hidden-print"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="alteracao in $ctrl.novasAlteracoes">
+                                        <td>{{ alteracao.numPedido }}</td>
+                                        <td>{{ alteracao.solicitanteNome }}</td>
+                                        <td>
+                                            <p ng-if="alteracao.filialDe">
+                                                Filial De: {{ alteracao.filialDe }}<br />
+                                                Filial Para: {{ alteracao.filialPara }}
+                                            </p>
+                                            <p ng-if="alteracao.horarioRetiradaDe">
+                                                Horário de Retirada De: {{ alteracao.horarioRetiradaDe | date: 'dd/MM/yyyy H:mm' }}<br />
+                                                Para: {{ alteracao.horarioRetiradaPara | date: 'dd/MM/yyyy H:mm' }}
+                                            </p>
+                                            <p ng-if="alteracao.enderecoEntrega">
+                                                Endereço de Entrega: {{ alteracao.enderecoEntrega }}
+                                            </p>
+
+                                        </td>
+                                        <td>{{ alteracao.dataSolicitacao | date: 'dd/MM/yyyy H:mm' }}</td>
+                                        <td class="sem-quebra hidden-print">
+                                            <a ui-sref="app.alteracoesDetalhar({ alteracaoId: alteracao.id })" class="btn btn-xs btn-primary" uib-tooltip="Detalhar">
+                                                <i class="fa fa-plus"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.slimscroll $ctrl.novasAlteracoes.length > 0 -->
+                    <div class="callout callout-info" ng-if="$ctrl.novasAlteracoes.length === 0">
+                        Nenhuma alteração localizada.
+                    </div>
+                    <!-- /.callout callout-info $ctrl.novasAlteracoes.length === 0 -->
+                </div>
+                <!-- /.box-body -->
+                <!-- Loading -->
+                <div class="overlay" ng-show="$ctrl.carregando">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+                <!-- end loading -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- ./col -->
+    </div>
+    <!-- ./row -->
+    <div class="row hidden-print">
+        <div class="col-md-12">
+            <!-- TABLE: Alterações Aguardando Finalização -->
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Alterações Aguardando Finalização</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div slimscroll="{alwaysVisible: false, size: '3px'}" ng-if="$ctrl.alteracoesFinalizando.length > 0">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th> Num. Pedido </th>
+                                        <th> Solicitado Por </th>
+                                        <th> Data Solicitação </th>
+                                        <th style="width: 50px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="alteracao in $ctrl.alteracoesFinalizando">
+                                        <td>{{ alteracao.numPedido }}</td>
+                                        <td>{{ alteracao.solicitanteNome }}</td>
+                                        <td>{{ alteracao.dataSolicitacao | date: 'dd/MM/yyyy H:mm' }}</td>
+                                        <td class="sem-quebra">
+                                            <a ui-sref="app.alteracoesDetalhar({ alteracaoId: alteracao.id })" class="btn btn-xs btn-primary" uib-tooltip="Detalhar">
+                                                <i class="fa fa-plus"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.slimscroll $ctrl.alteracoesFinalizando.length > 0 -->
+                    <div class="callout callout-info" ng-if="$ctrl.alteracoesFinalizando.length === 0">
+                        Nenhuma alteração localizada.
+                    </div>
+                    <!-- /.callout callout-info $ctrl.alteracoesFinalizando.length === 0 -->
+                </div>
+                <!-- /.box-body -->
+                <!-- Loading -->
+                <div class="overlay" ng-show="$ctrl.carregando">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+                <!-- end loading -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- ./col -->
+    </div>
+    <!-- ./row -->
+    <div class="row hidden-print">
+        <div class="col-md-6">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Alterações por Setor</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <div class="table-responsive" ng-if="$ctrl.alteracoesPorSetor.length > 0">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th> Setor </th>
+                                    <th style="width: 50px;">Quantidade</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="alteracao in $ctrl.alteracoesPorSetor">
+                                    <td>{{alteracao.setorRequisitanteNome}}</td>
+                                    <td class="sem-quebra">{{alteracao.quantidade}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive alteracoesPorSetor.length > 0 -->
+                    <div class="callout callout-info" ng-if="$ctrl.alteracoesPorSetor.length === 0">
+                        Nenhuma alteração localizada.
+                    </div>
+                    <!-- /.callout callout-info alteracoesPorSetor.length === 0 -->
+                </div>
+                <!-- /.box-body -->
+                <!-- Loading -->
+                <div class="overlay" ng-show="$ctrl.carregando">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+                <!-- end loading -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <div class="col-md-6">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Alterações por Atendente</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <div class="table-responsive" ng-if="$ctrl.alteracoesPorSetor.length > 0">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th> Atendente </th>
+                                    <th style="width: 50px;">Quantidade</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="alteracao in $ctrl.alteracoesPorAtendentes">
+                                    <td>{{alteracao.solicitanteNome}}</td>
+                                    <td class="sem-quebra">{{alteracao.quantidade}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive alteracoesPorAtendentes.length > 0 -->
+                    <div class="callout callout-info" ng-if="$ctrl.alteracoesPorAtendentes.length === 0">
+                        Nenhuma alteração localizada.
+                    </div>
+                    <!-- /.callout callout-info alteracoesPorAtendentes.length === 0 -->
+                </div>
+                <!-- /.box-body -->
+                <!-- Loading -->
+                <div class="overlay" ng-show="$ctrl.carregando">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+                <!-- end loading -->
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+</section>

@@ -1,0 +1,90 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Alteração de Pedido #{{ $ctrl.alteracao.numPedido }} <span ng-if="$ctrl.alteracao.pedidosCadados">- Pedidos Casados / Varejos {{ $ctrl.alteracao.pedidosCadados }}</span>
+        <small class="label bg-green" ng-if="$ctrl.alteracao.atendida">Atendida</small>
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-6 col-lg-4">
+            <div class="box box-primary">
+                <div class="box-body">
+                    <strong>Solicitante:</strong>
+                    <p>{{ $ctrl.alteracao.solicitanteNome }}</p>
+                    <ul class="list-group list-group-unbordered">
+                        <li class="list-group-item">
+                            <strong>Setor Requisitante</strong>
+                            <a class="pull-right">{{ $ctrl.alteracao.setorRequisitanteNome }}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Data Solicitação</strong>
+                            <a class="pull-right">{{ $ctrl.alteracao.dataSolicitacao | date: 'dd/MM/yyyy HH:mm:ss' }}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Data Ultima Alteração</strong>
+                            <a class="pull-right">{{ $ctrl.alteracao.dataUltimaAlteracao | date: 'dd/MM/yyyy HH:mm:ss' }}</a>
+                        </li>
+                        <li class="list-group-item" ng-if="$ctrl.alteracao.dataRecebido">
+                            <strong>Data Recebido</strong>
+                            <a class="pull-right">{{ $ctrl.alteracao.dataRecebido | date: 'dd/MM/yyyy HH:mm:ss' }}</a>
+                        </li>
+                    </ul>
+                    <strong ng-if="$ctrl.alteracao.recebedorNome">Recebido por:</strong>
+                    <p ng-if="$ctrl.alteracao.recebedorNome">{{ $ctrl.alteracao.recebedorNome }}</p>
+                    <a href="#" class="btn btn-primary btn-block" ng-click="$ctrl.exibeReceberAlteracao()" ng-if="!$ctrl.alteracao.dataRecebido" has-permission="alteracoes:receber">Receber</a>
+                    <a href="#" class="btn btn-primary btn-block" ng-click="$ctrl.exibeFinalizarAlteracao()" ng-if="!$ctrl.alteracao.atendida && $ctrl.alteracao.dataRecebido" has-permission="alteracoes:finalizar">Finalizar</a>
+                    <a href="#" class="btn btn-primary btn-block" ng-click="$ctrl.exibeObservacoes()" ng-if="!$ctrl.alteracao.atendida" has-permission="alteracoes:receber">Observações</a>
+                </div>
+                <!-- /.box-body -->
+                <!-- Loading -->
+                <div class="overlay" ng-show="$ctrl.carregando">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+                <!-- end loading -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col-md-4 -->
+        <div class="col-md-6 col-lg-8">
+            <div class="box box-primary">
+                <div class="box-body">
+                    <strong ng-if="$ctrl.alteracao.filialDe"><i class="fa fa-map-marker margin-r-5"></i> Filial</strong>
+                    <p ng-if="$ctrl.alteracao.filialDe">
+                        <strong class="margin-r-5">De:</strong>
+                        <span class="margin-r-5">{{ $ctrl.alteracao.filialDe }}</span>
+                        <strong class="margin-r-5">Para:</strong>
+                        <span class="margin-r-5">{{ $ctrl.alteracao.filialPara }}</span>
+                    </p>
+                    <hr ng-if="$ctrl.alteracao.horarioRetiradaDe && $ctrl.alteracao.filialDe">
+                    <strong ng-if="$ctrl.alteracao.horarioRetiradaDe"><i class="fa fa-clock-o margin-r-5"></i> Horário de Retirada do Cliente</strong>
+                    <p ng-if="$ctrl.alteracao.horarioRetiradaDe">
+                        <strong class="margin-r-5">De:</strong>
+                        <span class="margin-r-5">{{ $ctrl.alteracao.horarioRetiradaDe  | date: 'dd/MM/yyyy HH:mm:ss' }}</span>
+                        <strong class="margin-r-5">Para:</strong>
+                        <span class="margin-r-5">{{ $ctrl.alteracao.horarioRetiradaPara  | date: 'dd/MM/yyyy HH:mm:ss' }}</span>
+                    </p>
+                    <hr ng-if="$ctrl.alteracao.enderecoEntrega && $ctrl.alteracao.horarioRetiradaDe">
+                    <strong ng-if="$ctrl.alteracao.enderecoEntrega"><i class="fa fa-motorcycle margin-r-5"></i> Endereço para Entrega</strong>
+                    <p ng-if="$ctrl.alteracao.enderecoEntrega">{{ $ctrl.alteracao.enderecoEntrega }}</p>
+                    <hr ng-if="$ctrl.alteracao.numRomaneio">
+                    <strong ng-if="$ctrl.alteracao.numRomaneio"><i class="fa fa-file-text-o margin-r-5"></i> Nº Romaneio</strong>
+                    <p ng-if="$ctrl.alteracao.numRomaneio">{{ $ctrl.alteracao.numRomaneio }}</p>
+                    <hr>
+                    <strong><i class="fa fa-exclamation-circle margin-r-5"></i> Motivo:</strong>
+                    <p>{{ $ctrl.alteracao.motivo }}</p>
+                    <hr ng-if="$ctrl.alteracao.observacoes">
+                    <strong ng-if="$ctrl.alteracao.observacoes"><i class="fa fa-comment-o margin-r-5"></i> Observações:</strong>
+                    <p ng-if="$ctrl.alteracao.observacoes">{{ $ctrl.alteracao.observacoes }}</p>
+                </div>
+                <!-- Loading -->
+                <div class="overlay" ng-show="$ctrl.carregando">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+                <!-- end loading -->
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</section>

@@ -1,0 +1,67 @@
+{
+    "paginaInicial": {
+        "titulo": "Página Inicial",
+        "href": "paginaInicial",
+        "active": true,
+        "permissoes": [
+            {
+                "titulo": "Cadastros",
+                "value": "cadastros"
+            },
+            {
+                "titulo": "Parâmetros",
+                "value": "parametros:listar"
+            },
+            {
+                "titulo": "Usuários",
+                "value": "usuarios:listar"
+            }
+        ]
+    },
+    "parametros": {
+        "titulo": "Parâmetros",
+        "href": "parametros",
+        "permissoes": [
+            {
+                "titulo": "Adicionar",
+                "value": "parametros:adicionar"
+            },
+            {
+                "titulo": "Editar",
+                "value": "parametros:editar"
+            },
+            {
+                "titulo": "Deletar",
+                "value": "parametros:deletar"
+            }
+        ]
+    },
+    "usuarios": {
+        "titulo": "Usuários",
+        "href": "usuarios",
+        "permissoes": [
+            {
+                "titulo": "Permissões",
+                "value": "usuarios:permissoes"
+            },
+            {
+                "titulo": "Ativar/Desativar",
+                "value": "usuarios:ativar"
+            }
+        ]
+    },
+    "alteracoes": {
+        "titulo": "Alterações",
+        "href": "alteracoes",
+        "permissoes": [
+            {
+                "titulo": "Receber",
+                "value": "alteracoes:receber"
+            },
+            {
+                "titulo": "Finalizar",
+                "value": "alteracoes:finalizar"
+            }
+        ]
+    }
+}

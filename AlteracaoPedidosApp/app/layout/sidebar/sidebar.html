@@ -1,0 +1,34 @@
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar Menu -->
+        <ul class="sidebar-menu">
+            <!-- Optionally, you can add icons to the links -->
+            <li><a ui-sref="app.dashboard" ui-sref-active="active"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
+            <li class="treeview" has-permission="cadastros">
+                <a href="#"><i class="fa fa-cogs"></i><span>Cadastros</span>
+                    <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li has-permission="parametros:listar">
+                        <a ui-sref="app.parametrosListar" ui-sref-active="active">
+                            <i class="fa fa-angle-double-right"></i> <span>Parâmetros</span>
+                        </a>
+                    </li>
+                    <li has-permission="usuarios:listar">
+                        <a ui-sref="app.usuariosListar" ui-sref-active="active">
+                            <i class="fa fa-angle-double-right"></i> <span>Usuários</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="header">Alterações</li>
+            <li><a ui-sref="app.alteracoesCreate" ui-sref-active="active"><i class="fa fa-plus"></i><span>Adicionar</span></a></li>
+            <li><a ui-sref="app.alteracoesBuscar" ui-sref-active="active"><i class="fa fa-search"></i><span>Buscar</span></a></li>
+        </ul>
+        <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+</aside>
